@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../core/toast/toast.service';
 import { ConfirmDialogService } from '../core/confirm-dialog/confirm-dialog.service';
-import { Demo, ModelService } from '../model.service';
+import { Config, Demo, ModelService } from '../model.service';
 import { Controller } from '../controller';
 
 @Component({
@@ -21,6 +21,7 @@ export class DemoComponent implements OnInit {
   demos: Signal<Demo[]> = this.modelService.demos$;
   loading: Signal<boolean> = this.modelService.demosLoading$;
   error: Signal<string | null> = this.modelService.demosError$;
+  config: Signal<Config | null> = this.modelService.config$;
 
   // Add Demo Form state
   showAddForm = false;
@@ -75,6 +76,21 @@ export class DemoComponent implements OnInit {
       this.toastService.success('Demo item deleted successfully');
     } catch (err: any) {
       this.toastService.error('Failed to delete demo item. Please try again.');
+    }
+  }
+
+  async testErrorHandling(): Promise<void> {
+    try {
+      await this.controller.triggerError();
+      this.toastService.error('Error endpoint should have thrown an error!');
+    } catch (err: any) {
+      // Extract RFC 7807 Problem Details from error response
+      const problem = err.error;
+      const errorMessage = problem?.detail || problem?.title || 'Unknown error occurred';
+      const errorTitle = problem?.title || 'Error';
+      
+      console.log('RFC 7807 Problem Details:', problem);
+      this.toastService.error(`${errorTitle}: ${errorMessage}`);
     }
   }
 }

@@ -18,6 +18,7 @@ describe('DemoComponent', () => {
   let demosSignal: ReturnType<typeof signal<Demo[]>>;
   let loadingSignal: ReturnType<typeof signal<boolean>>;
   let errorSignal: ReturnType<typeof signal<string | null>>;
+  let configSignal: ReturnType<typeof signal<any>>;
 
   const mockDemos: Demo[] = [
     { id: '1' },
@@ -26,17 +27,19 @@ describe('DemoComponent', () => {
   ];
 
   beforeEach(async () => {
-    const controllerSpy = jasmine.createSpyObj('Controller', ['loadDemos', 'createDemo', 'deleteDemo']);
+    const controllerSpy = jasmine.createSpyObj('Controller', ['loadDemos', 'createDemo', 'deleteDemo', 'triggerError']);
     
     // Create writable signals for testing
     demosSignal = signal<Demo[]>([]);
     loadingSignal = signal<boolean>(false);
     errorSignal = signal<string | null>(null);
+    configSignal = signal<any>(null);
     
     const modelServiceSpy = jasmine.createSpyObj('ModelService', [], {
       demos$: demosSignal,
       demosLoading$: loadingSignal,
-      demosError$: errorSignal
+      demosError$: errorSignal,
+      config$: configSignal
     });
     const toastServiceSpy = jasmine.createSpyObj('ToastService', ['success', 'error']);
     const confirmServiceSpy = jasmine.createSpyObj('ConfirmDialogService', ['confirm']);

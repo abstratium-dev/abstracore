@@ -1,5 +1,6 @@
 package dev.abstratium.core.boundary;
 
+import dev.abstratium.core.BuildInfo;
 import io.quarkus.info.runtime.spi.InfoContributor;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -32,7 +33,8 @@ public class ConfigInfoContributor implements InfoContributor {
     public Map<String, Object> data() {
         return Map.of(
             // "allowSignup", allowSignup,
-            "buildVersion", buildVersion
+            "buildVersion", buildVersion,
+            "baselineBuildTimestamp", BuildInfo.BUILD_TIMESTAMP
         );
     }
 }

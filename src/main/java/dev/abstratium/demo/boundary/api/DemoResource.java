@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import dev.abstratium.core.boundary.ErrorCode;
+import dev.abstratium.core.boundary.FunctionalException;
 import dev.abstratium.demo.Roles;
 import dev.abstratium.demo.entity.Demo;
 import dev.abstratium.demo.service.DemoService;
@@ -17,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 @Path("/api/demo")
 @Tag(name = "Demo", description = "Demo endpoints")
@@ -52,6 +55,23 @@ public class DemoResource {
     @RolesAllowed({Roles.USER})
     public void delete(@PathParam("id") String id) {
         demoService.delete(id);
+    }
+
+    /**
+     * Demo endpoint that throws a FunctionalException to demonstrate RFC 7807 Problem Details.
+     * This endpoint always fails with a 400 Bad Request containing a structured error response.
+     * Uses ErrorCode.DEMO_ERROR which provides a unique error code and wiki documentation URL.
+     */
+    @GET
+    @Path("/error")
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({Roles.USER})
+    public void triggerError() {
+        throw new FunctionalException(
+            Response.Status.BAD_REQUEST,
+            ErrorCode.DEMO_ERROR,
+            "This is a demonstration of RFC 7807 Problem Details error handling. The error response follows the standard format with type, title, status, and detail fields."
+        );
     }
 
 }

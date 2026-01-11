@@ -33,17 +33,39 @@ git push -u origin main
 ```
 
 2. Pulling Baseline Updates
-When Abstracore is updated with new features or security patches, pull those changes into your project fork:
+
+When Abstracore is updated with new features or security patches, pull those changes into your project fork using the provided sync script:
+
+```bash
+# From the project root, run the sync script
+bash scripts/sync-base.sh
+```
+
+The script will:
+- Add the `upstream` remote if it doesn't exist (pointing to Abstracore)
+- Fetch the latest changes from Abstracore
+- Merge the baseline changes into your project
+- Pause before committing so you can review the changes
+
+**Manual Alternative:**
+
+If you prefer to sync manually:
 
 ```bash
 # Ensure you are on your main branch
 git checkout main
 
+# Add upstream remote (only needed once)
+git remote add upstream https://github.com/abstratium-dev/abstracore.git
+
 # Fetch the latest baseline code
 git fetch upstream
 
 # Merge baseline changes into your project
-git merge upstream/main --allow-unrelated-histories
+git merge upstream/main --no-commit --no-ff
+
+# Review changes, then commit
+git commit -m "Merge baseline updates from Abstracore"
 ```
 
 ⚠️ **IMPORTANT**: Avoid modifying the `/core` directory in your project forks. Keep your custom logic in `/app` or specific feature packages to minimize merge conflicts during updates.

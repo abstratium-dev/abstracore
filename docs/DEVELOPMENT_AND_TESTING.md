@@ -108,6 +108,25 @@ And then execute them manually by clicking the play button in the UI which opene
 
 # Upgrading
 
+## Upgrading the Abstracore Baseline
+
+To merge the latest version of the Abstracore baseline into your project, use the provided sync script:
+
+```bash
+./scripts/sync-base.sh
+```
+
+This script will:
+1. Fetch the latest changes from the upstream Abstracore repository
+2. Merge them into your project (with `--no-commit` for review)
+3. Update the baseline build timestamp via the pre-commit hook when you commit
+
+The baseline build timestamp is automatically exposed at `/public/config` under `baselineBuildTimestamp`, allowing you to track which version of the baseline is deployed in each application.
+
+After running the script, review the changes and resolve any conflicts before committing.
+
+## Upgrading Dependencies
+
 1. Update Quarkus:
 ```bash
 jbang version --update

@@ -69,4 +69,28 @@ export class Controller {
       throw error;
     }
   }
+
+  async triggerError(): Promise<void> {
+    try {
+      await firstValueFrom(
+        this.http.get<void>('/api/demo/error')
+      );
+    } catch (error) {
+      console.error('Error response:', error);
+      throw error;
+    }
+  }
+
+  async loadConfig(): Promise<{logLevel: string}> {
+    try {
+      const config = await firstValueFrom(
+        this.http.get<{logLevel: string}>('/public/config')
+      );
+      this.modelService.setConfig(config);
+      return config;
+    } catch (error) {
+      console.error('Error loading config:', error);
+      throw error;
+    }
+  }
 }

@@ -1,9 +1,18 @@
 <div class="container">
   <div class="page-header">
     <h1>Demo Items</h1>
-    <button class="btn-add" (click)="toggleAddForm()" [disabled]="formSubmitting">
-      {{ showAddForm ? 'Cancel' : '+ Add Demo Item' }}
-    </button>
+    <div class="header-actions">
+      <button class="btn-add" (click)="toggleAddForm()" [disabled]="formSubmitting">
+        {{ showAddForm ? 'Cancel' : '+ Add Demo Item' }}
+      </button>
+      <button class="btn-secondary" (click)="testErrorHandling()">
+        Test RFC 7807 Error
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="config()" class="info-box">
+    <p><strong>Config Loaded:</strong> Log Level = {{ config()?.logLevel }}</p>
   </div>
   
   <div *ngIf="loading()" class="loading">
