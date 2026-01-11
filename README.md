@@ -131,26 +131,26 @@ Background Color: #5c6bc0
 
 # Things to do when creating a new project
 
-[ ] - Search for TODO and fix
-[ ] - Search for core and fix, e.g. in `pom.xml`
-[ ] - Update README.md with project-specific information
-[ ] - Update USER_GUIDE.md with project-specific information
-[ ] - Update DATABASE.md with project-specific information
-[ ] - Update NATIVE_IMAGE_BUILD.md with project-specific information
-[ ] - Update SECURITY_DESIGN.md with project-specific information
-[ ] - Update TODO.md with project-specific information
-[ ] - Update SECURITY.md with project-specific information
-[ ] - Update CONTRIBUTING.md with project-specific information
-[ ] - Create favicon, store it in root as zip and put it in `src/main/webui/public`
-[ ] - Update `.windsurf` configuration
-[ ] - Replace `src/main/webui/src/app/demo` with project-specific components
-[ ] - 
-[ ] - 
-[ ] - 
-[ ] - 
-[ ] - 
-[ ] - 
-[ ] - 
-[ ] - 
-[ ] - 
-[ ] - 
+- [ ] - Search for TODO and fix
+- [ ] - Search for core and fix, e.g. in `pom.xml`
+- [ ] - Update README.md with project-specific information
+- [ ] - Update USER_GUIDE.md with project-specific information
+- [ ] - Update DATABASE.md with project-specific information
+- [ ] - Update NATIVE_IMAGE_BUILD.md with project-specific information
+- [ ] - Update SECURITY_DESIGN.md with project-specific information
+- [ ] - Update TODO.md with project-specific information
+- [ ] - Update SECURITY.md with project-specific information
+- [ ] - Update CONTRIBUTING.md with project-specific information
+- [ ] - Create favicon, store it in root as zip and put it in `src/main/webui/public`
+- [ ] - Update `.windsurf` configuration
+- [ ] - Replace `src/main/webui/src/app/demo` with project-specific components
+- [ ] - 
+- [ ] - 
+- [ ] - 
+- [ ] - 
+- [ ] - 
+- [ ] - 
+- [X] - 
+- [x] - 
+- [ ] - 
+- [ ] - 

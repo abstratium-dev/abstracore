@@ -19,11 +19,9 @@
         <a href="https://abstratium.dev/docs/legal">Legal</a>
         @if(isSignedIn) {
             &nbsp;|&nbsp;
-            <a id="clients-link" routerLink="/clients" routerLinkActive="inactive-link">Clients</a>
+            <a id="home-link" routerLink="/" routerLinkActive="inactive-link">🏠</a>
             &nbsp;|&nbsp;
-            <a id="accounts-link" routerLink="/accounts" routerLinkActive="inactive-link">Accounts</a>
-            &nbsp;|&nbsp;
-            🥷 <a id="user-link" routerLink="/user" routerLinkActive="inactive-link">{{ token.name }}</a>
+            <a id="TODO-link" routerLink="/TODO" routerLinkActive="inactive-link">TODO</a>
             &nbsp;|&nbsp;
             <a id="signout-link" class="alink" (click)="signout()">Sign out</a>
         }

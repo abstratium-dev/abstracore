@@ -395,7 +395,7 @@ sequenceDiagram
     
     Browser->>Logout: GET /api/auth/logout
     Logout->>OIDC: Clear session
-    OIDC->>Browser: Delete q_session cookie<br/>Set-Cookie: q_session=; Max-Age=0
+    OIDC->>Browser: Delete q_session cookie
     Logout->>Browser: 302 Redirect to /signed-out
     
     Browser->>Quinoa: GET /signed-out
