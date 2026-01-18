@@ -220,3 +220,7 @@ That Entity should have the following properties:
 - country
 ```
 
+# TODO later after implementing your first feature
+
+- [ ] remove all references to `demo` in the entire project
+- [ ] remove all files with `demo` in their name
