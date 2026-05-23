@@ -6,13 +6,14 @@ import { TodoComponent } from './demo/todo.component';
 import { SignedInComponent } from './core/signed-in/signed-in.component';
 import { SignedOutComponent } from './core/signed-out/signed-out.component';
 import { PublicComponent } from './demo/public.component';
+import { LegalComponent } from './core/legal/legal.component';
 
 export const routes: Routes = [
   { path: 'public',     component: PublicComponent },
   { path: '',           component: PublicComponent },
   { path: 'demo',       component: DemoComponent,     canActivate: [authGuard] },
   { path: 'TODO',       component: TodoComponent,     canActivate: [authGuard] },
-
+  { path: 'legal',      component: LegalComponent },
 
   { path: 'signed-in',  component: SignedInComponent, canActivate: [authGuard] },
   { path: 'signed-out', component: SignedOutComponent },

@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { AppComponent } from './app.component';
+import { WINDOW } from './core/window.token';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
       providers: [
         provideRouter([]),
         provideHttpClient(),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        { provide: WINDOW, useValue: window }
       ]
     }).compileComponents();
   });

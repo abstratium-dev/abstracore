@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { ToastComponent } from './core/toast/toast.component';
 import { ConfirmDialogComponent } from './core/confirm-dialog/confirm-dialog.component';
+import { CookieNoticeComponent } from './core/cookie-notice/cookie-notice.component';
 import { ModelService } from './model.service';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, HeaderComponent, ToastComponent, ConfirmDialogComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, ToastComponent, ConfirmDialogComponent, CookieNoticeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

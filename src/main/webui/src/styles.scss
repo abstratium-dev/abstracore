@@ -632,6 +632,20 @@ h2 {
   }
 }
 
+/* Global anchor base */
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+
+  &:visited {
+    color: var(--color-link-light);
+  }
+}
+
 /* ===== DIVIDER ===== */
 .divider {
   display: flex;
