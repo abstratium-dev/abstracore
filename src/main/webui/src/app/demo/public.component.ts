@@ -41,6 +41,10 @@ export class PublicComponent implements OnInit {
     error = signal<string | null>(null);
 
     ngOnInit(): void {
+        this.fetchPublicInfo();
+    }
+
+    private fetchPublicInfo(): void {
         this.http.get<PublicInfo>('/public/info').subscribe({
             next: (data) => {
                 this.info.set(data);
@@ -53,4 +57,5 @@ export class PublicComponent implements OnInit {
             }
         });
     }
+
 }

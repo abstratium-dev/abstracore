@@ -103,6 +103,7 @@ _Replace all `TODO_...` values with the values generated above.
    - `COOKIE_ENCRYPTION_SECRET`: Cookie encryption secret (min 32 chars, generate with `openssl rand -base64 32`)
    - `CSRF_TOKEN_SIGNATURE_KEY`: CSRF token signature key (min 32 chars, generate with `openssl rand -base64 64 | tr -d '\n'`)
    - `ABSTRATIUM_TOGGLES_API_URL`: URL of the Abstoggle public API (e.g., `https://toggles.abstratium.dev`, required in production only)
+   - `ABSTRATIUM_TOGGLES_CONTEXT`: Context for the Abstoggle public API (e.g., `abstratium-public-...`)
    - `STAGE`: Deployment stage identifier exposed to the frontend (e.g., "dev", "test", "prod", defaults to "dev")
 
    **Optional Environment Variables:**

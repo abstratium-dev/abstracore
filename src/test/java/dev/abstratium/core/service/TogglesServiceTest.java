@@ -51,6 +51,7 @@ class TogglesServiceTest {
     @BeforeEach
     void resetWireMock() {
         wireMockServer.resetAll();
+        togglesService.clearCache();
     }
 
     @Test
@@ -72,6 +73,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-catchall",
+                            "toggleDescription": "Test catchall toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "default",
                             "priority": 1,
@@ -89,7 +92,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-catchall"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -116,7 +118,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-missing"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -133,7 +134,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-error"))
                 .willReturn(aResponse().withStatus(500)));
 
         Map<String, String> result = togglesService.getToggleValues(
@@ -149,6 +149,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-regex",
+                            "toggleDescription": "Test regex toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "specific",
                             "priority": 1,
@@ -159,6 +161,8 @@ class TogglesServiceTest {
                         },
                         {
                             "toggleName": "test-regex",
+                            "toggleDescription": "Test regex toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "default",
                             "priority": 2,
@@ -176,7 +180,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-regex"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -198,6 +201,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-missing-key",
+                            "toggleDescription": "Test missing key toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "specific",
                             "priority": 1,
@@ -217,7 +222,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-missing-key"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -236,6 +240,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-regex-flags",
+                            "toggleDescription": "Test regex flags toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "region",
                             "priority": 1,
@@ -255,7 +261,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-regex-flags"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -274,6 +279,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-invalid-regex",
+                            "toggleDescription": "Test invalid regex toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "bad",
                             "priority": 1,
@@ -293,7 +300,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-invalid-regex"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -315,6 +321,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-no-match",
+                            "toggleDescription": "Test no match toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "specific",
                             "priority": 1,
@@ -334,7 +342,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-no-match"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -353,6 +360,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "toggle-a",
+                            "toggleDescription": "Toggle A",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "default",
                             "priority": 1,
@@ -361,6 +370,8 @@ class TogglesServiceTest {
                         },
                         {
                             "toggleName": "toggle-b",
+                            "toggleDescription": "Toggle B",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "default",
                             "priority": 1,
@@ -378,7 +389,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("toggle-a,toggle-b"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -398,6 +408,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-cached",
+                            "toggleDescription": "Test cached toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "default",
                             "priority": 1,
@@ -415,7 +427,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-cached"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -429,8 +440,7 @@ class TogglesServiceTest {
                 Set.of("test-cached"), Map.of());
         assertEquals("cached-value", secondResult.get("test-cached"));
 
-        wireMockServer.verify(1, getRequestedFor(urlPathEqualTo("/public/toggles"))
-                .withQueryParam("nameFilter", equalTo("test-cached")));
+        wireMockServer.verify(1, getRequestedFor(urlPathEqualTo("/public/toggles")));
     }
 
     @Test
@@ -440,6 +450,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-null-context",
+                            "toggleDescription": "Test null context toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "default",
                             "priority": 1,
@@ -457,7 +469,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-null-context"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -476,6 +487,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-priority",
+                            "toggleDescription": "Test priority toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "low",
                             "priority": 3,
@@ -484,6 +497,8 @@ class TogglesServiceTest {
                         },
                         {
                             "toggleName": "test-priority",
+                            "toggleDescription": "Test priority toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "high",
                             "priority": 1,
@@ -501,7 +516,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-priority"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -520,6 +534,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "test-null-criterion",
+                            "toggleDescription": "Test null criterion toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "specific",
                             "priority": 1,
@@ -539,7 +555,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-null-criterion"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -556,7 +571,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("test-malformed"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -575,6 +589,8 @@ class TogglesServiceTest {
                     "toggles": [
                         {
                             "toggleName": "wanted-toggle",
+                            "toggleDescription": "Wanted toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "default",
                             "priority": 1,
@@ -583,6 +599,8 @@ class TogglesServiceTest {
                         },
                         {
                             "toggleName": "other-toggle",
+                            "toggleDescription": "Other toggle",
+                            "toggleEnabled": true,
                             "stageName": "test",
                             "ruleName": "default",
                             "priority": 1,
@@ -600,7 +618,6 @@ class TogglesServiceTest {
         wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
                 .withQueryParam("stage", equalTo("test"))
                 .withQueryParam("context", equalTo("abstratium-public"))
-                .withQueryParam("nameFilter", equalTo("wanted-toggle"))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
@@ -610,5 +627,42 @@ class TogglesServiceTest {
                 Set.of("wanted-toggle"), Map.of());
 
         assertEquals("on", result.get("wanted-toggle"));
+    }
+
+    @Test
+    void testDisabledToggleReturnsOffImmediately() {
+        String responseJson = """
+                {
+                    "toggles": [
+                        {
+                            "toggleName": "test-disabled",
+                            "toggleDescription": "Test disabled toggle",
+                            "toggleEnabled": false,
+                            "stageName": "test",
+                            "ruleName": "default",
+                            "priority": 1,
+                            "value": "should-not-return-this",
+                            "ruleCriteria": []
+                        }
+                    ],
+                    "queryMetadata": {
+                        "count": 1,
+                        "cacheHit": false
+                    }
+                }
+                """;
+
+        wireMockServer.stubFor(get(urlPathEqualTo("/public/toggles"))
+                .withQueryParam("stage", equalTo("test"))
+                .withQueryParam("context", equalTo("abstratium-public"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(responseJson)));
+
+        Map<String, String> result = togglesService.getToggleValues(
+                Set.of("test-disabled"), Map.of());
+
+        assertEquals("off", result.get("test-disabled"));
     }
 }
