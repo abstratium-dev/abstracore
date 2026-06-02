@@ -18,7 +18,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(SCRIPT_DIR))
 PROJECT_NAME = os.path.basename(PROJECT_ROOT)
 
 EXCLUDED_DIRS = {
-    '.git', 'target', 'node_modules', '.windsurf', 'dist', '.angular',
+    '.git', 'target', 'node_modules', '.windsurf', '.devin', 'dist', '.angular',
     '.mvn', '__pycache__', '.idea', '.vscode',
 }
 

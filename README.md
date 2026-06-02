@@ -190,7 +190,7 @@ Background Color: #5c6bc0
 - [ ] - Update TODO.md with project-specific information
 - [ ] - Update SECURITY.md with project-specific information
 - [ ] - Create favicon, store it in root as zip and put it in `src/main/webui/public`
-- [ ] - Update `.windsurf` configuration
+- [ ] - Update `.devin` configuration
 - [ ] - Replace `src/main/webui/src/app/demo` with project-specific components
 - [ ] - Update application.properties with application specific values
 - [ ] - Update angular.json where it uses "TODO"

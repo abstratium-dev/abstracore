@@ -29,5 +29,5 @@ done
 echo ""
 echo "✅ Hooks installed successfully to: $TARGET_DIR"
 echo ""
-echo "These scripts are already configured so that Windsurf uses them due to the hooks configured in the .windsurf/hooks.json folder"
+echo "These scripts are already configured so that Windsurf uses them due to the hooks configured in the .devin/hooks.json folder"
 echo ""
